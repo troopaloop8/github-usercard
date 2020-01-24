@@ -2,15 +2,20 @@
            (replacing the palceholder with your Github name):
            https://api.github.com/users/<your name>
 */
+let cards = document.querySelector('.cards');
 
 let troopaloopArray = axios
-  .get("https://api.github.com/users/troopaloop")
+  .get("https://api.github.com/users/troopaloop8")
   .then(response => {
     console.log(response);
-   
+    let userData = response.data;
+    console.log(userData);
+
+   let card = cardMaker(userData);
+   cards.appendChild(card);
   })
 
-console.log(troopaloopArray)
+
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -84,7 +89,18 @@ function cardMaker(object) {
   cardInfo.appendChild(followers);
   cardInfo.appendChild(following);
   cardInfo.appendChild(userBio);
-
+  
+  //using information from the data object to assign content to the elements
+  userImage.src = object.avatar_url;
+  nameIRL.textContent = object.name;
+  userName.textContent = object.login;
+  userLocation.textContent = `Location: ${object.location}`;
+  userProfile.textContent = `Profile:`;
+  userURL.textContent = object.html_url;
+  followers.textContent = `Followers: ${object.followers}`;
+  following.textContent = `Following: ${object.following}`;
+  userBio.textContent = object.bio;
+  
   return userCard;
 
 }
