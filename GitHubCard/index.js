@@ -3,14 +3,14 @@
            https://api.github.com/users/<your name>
 */
 
-axios
+let troopaloopArray = axios
   .get("https://api.github.com/users/troopaloop")
   .then(response => {
     console.log(response);
    
   })
 
-
+console.log(troopaloopArray)
 
 /* Step 2: Inspect and study the data coming back, this is YOUR 
    github info! You will need to understand the structure of this 
@@ -55,6 +55,40 @@ const followersArray = [];
 
 */
 
+function cardMaker(object) {
+  //making elements for the specified component
+  let userCard = document.createElement('div');
+  let userImage = document.createElement('img');
+  let cardInfo = document.createElement('div');
+  let nameIRL = document.createElement('h3');
+  let userName = document.createElement('p');
+  let userLocation = document.createElement('p');
+  let userProfile = document.createElement('p');
+  let userURL = document.createElement('a');
+  let followers = document.createElement('p');
+  let following = document.createElement('p');
+  let userBio = document.createElement('p');
+  //adding classes to the new elements
+  userCard.classList.add('card');
+  cardInfo.classList.add('card-info');
+  nameIRL.classList.add('name');
+  userName.classList.add('username');
+  //build tree-like structure for the new elements to create a block
+  userCard.appendChild(userImage);
+  userCard.appendChild(cardInfo);
+  cardInfo.appendChild(nameIRL);
+  cardInfo.appendChild(userName);
+  cardInfo.appendChild(userLocation);
+  cardInfo.appendChild(userProfile);
+  userProfile.appendChild(userURL);
+  cardInfo.appendChild(followers);
+  cardInfo.appendChild(following);
+  cardInfo.appendChild(userBio);
+
+  return userCard;
+
+}
+
 /* List of LS Instructors Github username's: 
   tetondan
   dustinmyers
@@ -62,3 +96,4 @@ const followersArray = [];
   luishrd
   bigknell
 */
+
